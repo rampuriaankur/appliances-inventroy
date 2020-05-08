@@ -1,4 +1,4 @@
-package com.cg;
+package com.cg.controllers;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.cg.common.TestHelper;
 import com.cg.controllers.ProductController;
 import com.cg.model.Product;
+import com.cg.model.ProductDTO;
 import com.cg.repositories.ProductRepo;
 import com.cg.services.ProductService;
 
@@ -40,7 +41,6 @@ public class AppliancesInventroyApplicationTest {
 	@Autowired
 	MockMvc mockMvc;
 
-	final String uri = "/product";
 
 	@Test
 	public void verifyaddVaildProduct() throws Exception {
@@ -58,24 +58,21 @@ public class AppliancesInventroyApplicationTest {
 		assertEquals(201, status);
 	}
 
-
 	@Test
 	public void getAllProduct() throws Exception {
 		String uri = "/product";
 		Product expectedProduct = TestHelper.getProdectData();
 		when(mockService.saveProduct(any())).thenReturn(expectedProduct);
 
-		MvcResult mvcResult = mockMvc
-				.perform(MockMvcRequestBuilders.get(uri))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 
 	}
-	
+
 	@Test
 	public void getProductById() throws Exception {
-		String uri = "/product/1";
+		String uri = "/product/2";
 		Product expectedProduct = TestHelper.getProdectData();
 		when(mockService.saveProduct(any())).thenReturn(expectedProduct);
 
@@ -90,28 +87,22 @@ public class AppliancesInventroyApplicationTest {
 	@Test
 	public void updateProduct() throws Exception {
 		String uri = "/product/1";
+
 		doNothing().when(mockService).deleteProduct(any());
-		MvcResult mvcResult = mockMvc
-				.perform(MockMvcRequestBuilders.put(uri))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.put(uri)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(204, status);
 
 	}
 
-
 	@Test
 	public void deleteProduct() throws Exception {
 		String uri = "/product/1";
 		doNothing().when(mockService).deleteProduct(any());
-		MvcResult mvcResult = mockMvc
-				.perform(MockMvcRequestBuilders.delete(uri))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(202, status);
 
 	}
-
-	
 
 }

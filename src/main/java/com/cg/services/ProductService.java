@@ -27,8 +27,9 @@ public class ProductService {
 		if (productRepo.getProductBySerialNumberWithBrandWithModel(product.getSerialNumber(), product.getBrand(),
 				product.getModel()) == null) {
 			return productRepo.save(product);
-		} else
+		} else {
 			throw new ProductException(VADLIDATION_ERROR, BE001);
+		}
 	}
 
 	public List<Product> getProductList(String serialNumber, String brand, String model, String status,
@@ -56,8 +57,7 @@ public class ProductService {
 	}
 
 	public Product getProductbyId(Integer id) {
-		Product product = productRepo.findById(id).orElseThrow(() -> new ProductException(VADLIDATION_ERROR, BE002));
-		return product;
+		return productRepo.findById(id).orElseThrow(() -> new ProductException(VADLIDATION_ERROR, BE002));
 	}
 
 	public void deleteProduct(Integer id) {

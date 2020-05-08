@@ -1,13 +1,20 @@
 package com.cg;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AppliancesInventroyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppliancesInventroyApplication.class, args);
+	}
+	
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
 	}
 
 }

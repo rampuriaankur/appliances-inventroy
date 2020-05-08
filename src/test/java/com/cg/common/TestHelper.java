@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cg.model.Product;
+import com.cg.model.ProductDTO;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -29,6 +30,17 @@ public class TestHelper {
 
 	public static Product getProdectData() {
 		Product expectedProduct = new Product();
+		expectedProduct.setBrand("Godrej");
+		expectedProduct.setModel("Bed");
+		expectedProduct.setPrice(new BigDecimal(3000));
+		expectedProduct.setSerialNumber("XUSAABC123");
+		expectedProduct.setStatus("new");
+		expectedProduct.setId(1);
+		return expectedProduct;
+	}
+	
+	public static ProductDTO getProdectDTOData() {
+		ProductDTO expectedProduct = new ProductDTO();
 		expectedProduct.setBrand("Godrej");
 		expectedProduct.setModel("Bed");
 		expectedProduct.setPrice(new BigDecimal(3000));

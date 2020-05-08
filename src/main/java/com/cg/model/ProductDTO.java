@@ -1,44 +1,44 @@
 package com.cg.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-public class Product implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+import io.swagger.annotations.ApiModelProperty;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
+
+
+	@ApiModelProperty(notes = "The database generated product ID")
 	private Integer id;
 
+	@NotEmpty(message = "Serial Number must not be empty")
+	@ApiModelProperty(notes = "The Serial Number of the product", required = true)
 	private String serialNumber;
 
+	@NotEmpty(message = "Brand must not be empty")
+	@ApiModelProperty(notes = "The Brand Name of product", required = true)
 	private String brand;
 
+	@NotEmpty(message = "Model must not be empty")
+	@ApiModelProperty(notes = "The product model", required = true)
 	private String model;
 
+	@ApiModelProperty(notes = "The status of the product")
 	private String status;
 
+	@ApiModelProperty(notes = "The price of the product", required = false)
 	private BigDecimal price;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(notes = "The Brought Date of the product", required = true)
 	private Date purchaseDate;
 
 	public Integer getId() {

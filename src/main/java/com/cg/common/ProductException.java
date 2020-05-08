@@ -4,15 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ProductException extends RuntimeException  {
+public class ProductException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String message;
+
 	public ProductException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ProductException(String code, String message) {
 		super();
 		this.code = code;
@@ -34,11 +35,5 @@ public class ProductException extends RuntimeException  {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -69,7 +69,7 @@ public class ProductServiceTest {
 		when(mockRepo.getListOfAllMatchingProduct(any(), any(), any(), any(), any()))
 				.thenReturn(TestHelper.getProductList());
 		List<Product> productList = mockService.getProductList("serialNumber", null, null, null, null);
-		assertSame(productList.size(), 2);
+		assertSame( 2,productList.size());
 	}
 
 	@Test
@@ -113,6 +113,7 @@ public class ProductServiceTest {
 		mockService.getProductbyId(1);
 
 	}
+
 	@Test(expected = ProductException.class)
 	public void ShouldThrowProductExceptionWhenDeleteProductIdNotFound() {
 		Product mockProduct = TestHelper.getProdectData();
@@ -126,10 +127,6 @@ public class ProductServiceTest {
 
 	}
 
-	
-	
-
-	
 	@Test
 	public void testGetProductById() {
 		Product mockProduct = TestHelper.getProdectData();
@@ -153,6 +150,5 @@ public class ProductServiceTest {
 		assertSame(expectedProduct.getStatus(), status);
 		assertSame(expectedProduct.getPurchaseDate(), purchaseDate);
 	}
-
 
 }

@@ -24,8 +24,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			</dependency> -->
+
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.5</version>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -36,8 +41,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
-				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
 		</dependency>
 
 
@@ -86,6 +89,22 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<!-- Sonar Setup Start -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.3.0.603</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>sonar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Sonar setup END -->
+			<!-- JOCOCO setup Start -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -95,7 +114,7 @@
 						<exclude>com/cg/AppliancesInventroyApplication.*</exclude>
 						<exclude>**/test/**</exclude>
 						<exclude>**/com/cg/common/**</exclude>
-						<exclude>**/*config*.java</exclude>
+						<exclude>**/com/cg/config/**</exclude>
 					</excludes>
 					<includes>
 						<include>com/cg/**/*</include>
@@ -106,7 +125,6 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-
 					</execution>
 					<!-- attached to Maven test phase -->
 					<execution>
@@ -120,11 +138,10 @@
 							<outputDirectory>target/jacoco-report</outputDirectory>
 						</configuration>
 					</execution>
-
-
 				</executions>
 			</plugin>
 
+			<!-- JOCOCO setup End -->
 		</plugins>
 	</build>
 
