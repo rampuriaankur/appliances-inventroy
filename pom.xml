@@ -90,7 +90,7 @@
 			</plugin>
 
 			<!-- Sonar Setup Start -->
-			<plugin>
+			<!-- 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.3.0.603</version>
@@ -103,6 +103,8 @@
 					</execution>
 				</executions>
 			</plugin>
+			 -->
+			
 			<!-- Sonar setup END -->
 			<!-- JOCOCO setup Start -->
 			<plugin>
