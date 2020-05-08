@@ -1,0 +1,243 @@
+swagger: '2.0'
+info:
+  description: Spring Boot REST API for Home Appliances
+  version: '1.0'
+  title: Spring Boot REST API
+  termsOfService: Terms of service
+  contact:
+    name: Ankur Rampuria
+  license:
+    name: Apache License Version 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+host: home-appliance.herokuapp.com
+basePath: /
+tags:
+  - name: product-controller
+    description: 'Operations pertaining to products in Home '
+paths:
+  /product:
+    get:
+      tags:
+        - product-controller
+      summary: View a list of available products
+      operationId: getProductListUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: brand
+          in: query
+          description: brand
+          required: false
+          type: string
+        - name: model
+          in: query
+          description: model
+          required: false
+          type: string
+        - name: purchaseDate
+          in: query
+          description: purchaseDate
+          required: false
+          type: string
+          format: date-time
+        - name: serialNumber
+          in: query
+          description: serialNumber
+          required: false
+          type: string
+        - name: status
+          in: query
+          description: status
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterator'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - product-controller
+      summary: Add new product
+      operationId: saveProductUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: productDTO
+          description: productDTO
+          required: true
+          schema:
+            $ref: '#/definitions/ProductDTO'
+      responses:
+        '200':
+          description: Successfully retrieved list
+          schema:
+            $ref: '#/definitions/ProductDTO'
+        '201':
+          description: Created
+        '400':
+          description: invalid input provided
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+  '/product/{id}':
+    get:
+      tags:
+        - product-controller
+      summary: Get product by ID
+      operationId: getProductUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - product-controller
+      summary: Update a product
+      operationId: updateProductUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: brand
+          in: query
+          description: brand
+          required: false
+          type: string
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - name: model
+          in: query
+          description: model
+          required: false
+          type: string
+        - name: purchaseDate
+          in: query
+          description: purchaseDate
+          required: false
+          type: string
+          format: date-time
+        - name: serialNumber
+          in: query
+          description: serialNumber
+          required: false
+          type: string
+        - name: status
+          in: query
+          description: status
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - product-controller
+      summary: Delete a product
+      operationId: deleteProductUsingDELETE
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+definitions:
+  Iterator:
+    type: object
+    title: Iterator
+  ProductDTO:
+    type: object
+    required:
+      - brand
+      - model
+      - purchaseDate
+      - serialNumber
+    properties:
+      brand:
+        type: string
+        description: The Brand Name of product
+      id:
+        type: integer
+        format: int32
+        description: The database generated product ID
+      model:
+        type: string
+        description: The product model
+      price:
+        type: number
+        description: The price of the product
+      purchaseDate:
+        type: string
+        format: date-time
+        description: The Brought Date of the product
+      serialNumber:
+        type: string
+        description: The Serial Number of the product
+      status:
+        type: string
+        description: The status of the product
+    title: ProductDTO
