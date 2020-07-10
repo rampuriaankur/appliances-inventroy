@@ -3,6 +3,10 @@
 
 This project is expose rest endpoints to consumer.
 
+# URLS
+
+* FrontEnd : UI is hosted on [Azure](https://home-appliance-app.azurewebsites.net/appliances)
+* APIs :   APIs are deployed on [Heroku](https://home-appliance.herokuapp.com/product)
 
 ## Built With
 
